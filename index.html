@@ -3,105 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Hack In Progress</title>
+    <title>System Security Alert</title>
     <style>
         body {
             background-color: black;
             color: lime;
-            font-family: monospace;
+            font-family: 'Courier New', monospace;
             text-align: center;
-            padding: 20px;
-        }
-        #output {
-            white-space: pre-line;
             overflow: hidden;
-            height: 300px;
-            font-size: 18px;
         }
-        .binary {
-            font-size: 14px;
-            color: lime;
-            margin-top: 20px;
+        .popup {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            color: red;
+            padding: 15px;
+            border: 2px solid red;
+            box-shadow: 0 0 10px red;
+            display: none;
+            font-size: 20px;
         }
-        #radar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 2px solid lime;
-            position: relative;
-            margin: 20px auto;
-            animation: scan 3s linear infinite;
-        }
-        @keyframes scan {
-            0% { box-shadow: 0 0 5px lime; }
-            50% { box-shadow: 0 0 20px lime; }
-            100% { box-shadow: 0 0 5px lime; }
+        .full-screen-alert {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            font-size: 40px;
+            display: none;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
 <body>
-    <h2>Connecting to Secure Server...</h2>
-    <div id="radar"></div>
-    <div id="output"></div>
-    <div class="binary" id="binary"></div>
+    <h1>Initializing System Scan...</h1>
+    <p>Fetching user data...</p>
+    <p><strong>Identified Users:</strong> aadheeey, najaaadeyyyy</p>
+    <p>Installing malware...</p>
+    
+    <div class="full-screen-alert" id="alertBox">WARNING: SYSTEM COMPROMISED!</div>
     
     <script>
-        const output = document.getElementById("output");
-        const binaryDisplay = document.getElementById("binary");
-        const messages = [
-            "Initializing system...",
-            "Fetching user details...",
-            "User identified: aadheeey",
-            "User identified: najaaadeyyyy",
-            "Scanning local network...",
-            "IP Address: " + (Math.floor(Math.random() * 255) + 1) + "." + (Math.floor(Math.random() * 255) + 1) + "." + (Math.floor(Math.random() * 255) + 1) + "." + (Math.floor(Math.random() * 255) + 1),
-            "Bypassing security firewall...",
-            "Injecting malware...",
-            "Installing malware...",
-            "Compromising system files...",
-            "Extracting login credentials...",
-            "Sending data to remote server...",
-            "Encrypting personal files...",
-            "Activating ransomware...",
-            "System shutdown initiated..."
-        ];
-        
-        let i = 0;
-        function displayMessage() {
-            if (i < messages.length) {
-                output.innerHTML += messages[i] + "\n";
-                i++;
-                setTimeout(displayMessage, 1200);
-            } else {
-                document.body.innerHTML += '<h1>ACCESS DENIED</h1>';
-                triggerPopups();
-            }
+        function showPopup() {
+            let popup = document.createElement('div');
+            popup.className = 'popup';
+            popup.innerText = "Poyi Padikkada potta!";
+            document.body.appendChild(popup);
+            popup.style.left = Math.random() * (window.innerWidth - 200) + 'px';
+            popup.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+            popup.style.display = 'block';
+            setTimeout(() => popup.remove(), 3000);
         }
-        
-        function generateBinary() {
-            let binary = "";
-            for (let j = 0; j < 1000; j++) {
-                binary += Math.round(Math.random()) + " ";
-                if (j % 50 === 0) binary += "<br>";
-            }
-            binaryDisplay.innerHTML = binary;
-            setTimeout(generateBinary, 500);
-        }
-        
+
         function triggerPopups() {
-            let popupCount = 0;
-            const popupInterval = setInterval(() => {
-                let left = Math.floor(Math.random() * (window.screen.width - 400));
-                let top = Math.floor(Math.random() * (window.screen.height - 200));
-                const newWindow = window.open("", "", `width=400,height=200,left=${left},top=${top}`);
-                if (newWindow) newWindow.document.write("<h1>Poyi Padikkada Potta!</h1>");
-                popupCount++;
-                if (popupCount >= 20) clearInterval(popupInterval);
-            }, 500);
+            setInterval(showPopup, 1000);
         }
         
-        setTimeout(displayMessage, 1000);
-        generateBinary();
+        function showFullScreenAlert() {
+            document.getElementById('alertBox').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('alertBox').style.display = 'none';
+            }, 5000);
+        }
+
+        setTimeout(triggerPopups, 3000);
+        setTimeout(showFullScreenAlert, 5000);
     </script>
 </body>
 </html>
