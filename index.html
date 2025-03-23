@@ -3,21 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surprise!</title>
+    <title>System Hack In Progress</title>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             background-color: black;
             color: lime;
-            font-size: 48px;
             font-family: monospace;
+            text-align: center;
+            padding: 20px;
+        }
+        #output {
+            white-space: pre-line;
+            overflow: hidden;
+            height: 300px;
+            font-size: 18px;
+        }
+        .binary {
+            font-size: 14px;
+            color: lime;
+            margin-top: 20px;
+        }
+        #radar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid lime;
+            position: relative;
+            margin: 20px auto;
+            animation: scan 3s linear infinite;
+        }
+        @keyframes scan {
+            0% { box-shadow: 0 0 5px lime; }
+            50% { box-shadow: 0 0 20px lime; }
+            100% { box-shadow: 0 0 5px lime; }
         }
     </style>
 </head>
 <body>
-    ADITHYANOOB
+    <h2>Connecting to Secure Server...</h2>
+    <div id="radar"></div>
+    <div id="output"></div>
+    <div class="binary" id="binary"></div>
+    
+    <script>
+        const output = document.getElementById("output");
+        const binaryDisplay = document.getElementById("binary");
+        const messages = [
+            "Initializing system...",
+            "Fetching user details...",
+            "User identified: aadheeey",
+            "User identified: najaaadeyyyy",
+            "Scanning local network...",
+            "IP Address: " + (Math.floor(Math.random() * 255) + 1) + "." + (Math.floor(Math.random() * 255) + 1) + "." + (Math.floor(Math.random() * 255) + 1) + "." + (Math.floor(Math.random() * 255) + 1),
+            "Bypassing security firewall...",
+            "Injecting malware...",
+            "Installing malware...",
+            "Compromising system files...",
+            "Extracting login credentials...",
+            "Sending data to remote server...",
+            "Encrypting personal files...",
+            "Activating ransomware...",
+            "System shutdown initiated..."
+        ];
+        
+        let i = 0;
+        function displayMessage() {
+            if (i < messages.length) {
+                output.innerHTML += messages[i] + "\n";
+                i++;
+                setTimeout(displayMessage, 1200);
+            } else {
+                document.body.innerHTML += '<h1>ACCESS DENIED</h1>';
+                triggerPopups();
+            }
+        }
+        
+        function generateBinary() {
+            let binary = "";
+            for (let j = 0; j < 1000; j++) {
+                binary += Math.round(Math.random()) + " ";
+                if (j % 50 === 0) binary += "<br>";
+            }
+            binaryDisplay.innerHTML = binary;
+            setTimeout(generateBinary, 500);
+        }
+        
+        function triggerPopups() {
+            let popupCount = 0;
+            const popupInterval = setInterval(() => {
+                let left = Math.floor(Math.random() * (window.screen.width - 400));
+                let top = Math.floor(Math.random() * (window.screen.height - 200));
+                const newWindow = window.open("", "", `width=400,height=200,left=${left},top=${top}`);
+                if (newWindow) newWindow.document.write("<h1>Poyi Padikkada Potta!</h1>");
+                popupCount++;
+                if (popupCount >= 20) clearInterval(popupInterval);
+            }, 500);
+        }
+        
+        setTimeout(displayMessage, 1000);
+        generateBinary();
+    </script>
 </body>
 </html>
